@@ -14,7 +14,7 @@ body {
 .slider {
   display: flex;
   width: calc(100% - 10rem);
-  transform: translateX(-00%);
+  transform: translateX(-100%);
 }
 
 .slider > img {
@@ -32,9 +32,34 @@ body {
   background-color: rgba(0, 0, 0, 0.25);
   z-index: 10;
   margin: 0.25rem 0;
+  padding: 0 0.5rem;
   cursor: pointer;
+  font-size: 4rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 150ms ease-in-out;
 }
 
-.handle:hover {
+.left-handle {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.right-handle {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.text {
+  transition: transform 150ms ease-in-out;
+}
+.handle:hover .text,
+.handle:focus .text {
+  transform: scale(1.2);
+}
+
+.handle:hover,
+.handle:focus {
   background-color: rgba(0, 0, 0, 0.5);
 }
