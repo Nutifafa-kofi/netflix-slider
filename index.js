@@ -9,6 +9,10 @@ document.addEventListener("click", (e) => {
   if (handle != null) onHandleClick(handle);
 });
 
+window.addEventListener("resize",e => {
+  //Recaculate progress bar
+})
+
 function onHandleClick(handle) {
   const slider = handle.closest(".container").querySelector(".slider");
   const sliderIndex = parseInt(getComputedStyle(slider).getPropertyValue("--slider-index"));

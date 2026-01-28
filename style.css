@@ -3,11 +3,14 @@
 }
 
 :root {
-  --slider-index: 0;
+  --handle-size: 4rem;
+  --img-gap: 0.25rem;
 }
 
 body {
   margin: 0;
+  background-color: #333;
+  color: #fff;
 }
 
 .container {
@@ -17,6 +20,7 @@ body {
 }
 
 .slider {
+  --items-per-screen: 3;
   --slider-index: 0;
   display: flex;
   /* flex-grow: 1; */
@@ -24,11 +28,11 @@ body {
   margin: 0 0.25rem;
   transform: translateX(calc(var(--slider-index) * -100%));
   transition: transform 250ms ease-in-out;
-
 }
 
 .slider > img {
-  max-width: 25%;
+  flex: 0 0 calc(100% / var(--items-per-screen));
+  max-width: calc(100% / var(--items-per-screen));
   aspect-ratio: 16 / 9;
   padding: 0.25rem;
   object-fit: cover;
@@ -38,7 +42,7 @@ body {
 .handle {
   border: none;
   border-radius: 1rem;
-  width: 5rem;
+  width: var(--handle-size);
   background-color: rgba(0, 0, 0, 0.25);
   z-index: 10;
   margin: 0.25rem 0;
@@ -72,4 +76,31 @@ body {
 .handle:hover,
 .handle:focus {
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.row {
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem calc(var(--img-gap) * 2 + var(--handle-size));
+}
+
+.title {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.progress-bar {
+  display: flex;
+  gap: 0.3rem;
+}
+.progress-item {
+  flex: 0 0 2rem;
+  height: .5rem;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.progress-item.active {
+  background-color: rgba(255, 255, 255, 0.9);
 }
