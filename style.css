@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+:root {
+  --slider-index: 0;
+}
+
 body {
   margin: 0;
 }
@@ -14,13 +18,14 @@ body {
 .slider {
   display: flex;
   width: calc(100% - 10rem);
-  transform: translateX(-100%);
+  margin: 0 0.25rem;
+  transform: translateX(var(--slider-index) * -100%);
 }
 
 .slider > img {
   max-width: 25%;
   aspect-ratio: 16 / 9;
-  padding: 0.25rem;
+  padding: 0.25rem; 
   object-fit: cover;
   border-radius: 0.55rem;
 }
