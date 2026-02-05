@@ -2,8 +2,15 @@
   box-sizing: border-box;
 }
 
+:root {
+  --handle-size: 4rem;
+  --img-gap: 0.25rem;
+}
+
 body {
   margin: 0;
+  background-color: #333;
+  color: #fff;
 }
 
 .container {
@@ -12,53 +19,84 @@ body {
 }
 
 .slider {
+  --items-per-screen: 3;
+  --slider-index: 0;
   display: flex;
-  width: calc(100% - 10rem);
-  transform: translateX(-00%);
+
+  margin: 0 0.25rem;
+  transform: translateX(calc(var(--slider-index) * -100%));
+  transition: transform 250ms ease-in-out;
 }
 
 .slider > img {
-  max-width: 25%;
+  flex: 0 0 calc(100% / var(--items-per-screen));
+  max-width: calc(100% / var(--items-per-screen));
   aspect-ratio: 16 / 9;
   padding: 0.25rem;
   object-fit: cover;
   border-radius: 0.55rem;
 }
 
-
+.handle {
+  border: none;
+  border-radius: 1rem;
+  width: var(--handle-size);
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 10;
+  margin: 0.25rem 0;
+  padding: 0 0.5rem;
+  cursor: pointer;
+  font-size: 4rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 150ms ease-in-out;
+}
 
 .left-handle {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-
-
 .right-handle {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-
-
-.handle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  border-radius: 1rem;
-  width: 5rem;
-  margin: 0.25rem 0;
-  z-index: 10;
-  font-size: 3rem;
-  color: white;
+.text {
   transition: transform 150ms ease-in-out;
 }
-
-.handle:hover {
-    transform: scale(1.1);
-  font-size: 2rem;
+.handle:hover .text,
+.handle:focus .text {
+  transform: scale(1.2);
 }
 
-.container:hover::after .handle {
-  transform: scale();
+.handle:hover,
+.handle:focus {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem calc(var(--img-gap) * 2 + var(--handle-size));
+  align-items: center;
+}
+
+.title {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.progress-bar {
+  display: flex;
+  gap: 0.3rem;
+}
+.progress-item {
+  flex: 0 0 2rem;
+  height: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.progress-item.active {
+  background-color: rgba(255, 255, 255, 0.9);
 }
